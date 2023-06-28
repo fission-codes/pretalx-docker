@@ -1,0 +1,12 @@
+FROM pretalx/standalone:latest
+
+COPY ./conf/pretalx.cfg /etc/pretalx/pretalx.cfg:ro
+VOLUME ["/data"]
+
+LABEL traefik.docker.network="pretalxdocker"
+LABEL traefik.enable="true"
+
+EXPOSE 80
+
+ENTRYPOINT ["pretalx"]
+CMD ["all"]

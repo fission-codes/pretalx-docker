@@ -1,0 +1,10 @@
+FROM mysql:latest
+
+VOLUME ["/var/lib/mysql"]
+
+ENV MYSQL_DATABASE=pretalx
+ENV MYSQL_USER=pretalx
+ENV MYSQL_PASSWORD=veryunsecureplschange
+ENV MYSQL_RANDOM_ROOT_PASSWORD=1
+
+CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
