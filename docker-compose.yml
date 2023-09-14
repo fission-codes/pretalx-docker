@@ -1,6 +1,7 @@
 version: '3'
 services:
   pretalx:
+    build: .
     image: pretalx/standalone:latest
     container_name: pretalx
     restart: unless-stopped
