@@ -1,7 +1,7 @@
 FROM python:3.10-bookworm
 
 RUN apt-get update && \
-    apt-get install -y git gettext libmariadb-dev locales build-essential \
+    apt-get install -y git gettext libmariadb-dev libpq-dev locales build-essential \
     supervisor \
     sudo \
     locales \
@@ -26,8 +26,7 @@ COPY deployment/docker/pretalx.bash /usr/local/bin/pretalx
 COPY deployment/docker/supervisord.conf /etc/supervisord.conf
 
 RUN pip3 install -U pip setuptools wheel gunicorn && \
-    pip3 install --upgrade-strategy eager -U "pretalx[mysql]" && \
-    pip3 install --upgrade-strategy eager -U "pretalx[redis]" && \
+    pip3 install --upgrade-strategy eager -U "pretalx[mysql,postgres,redis]" && \
     pip3 install -e /pretalx/ 
 
 RUN python3 -m pretalx migrate
